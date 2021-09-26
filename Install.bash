@@ -178,8 +178,14 @@ case "$ARGS" in
 	CHROOT=$2
 	PACKAGE=$3
 	VERSION=${4:-version}
+	APACHEDIR=${5:-httpd}
+        USERNAME=${6:-ocapache} 
+        USERID=${7:-3000} 
+        GROUPNAME=${8:-ocapache} 
+        GROUPID=${9:-3000} 
 	sudo bash make_chroot.bash clean /$CHROOT; 
 	sudo bash make_chroot.bash  install /$CHROOT $PACKAGE
+	sudo bash  apache-hardening.bash /$CHROOT $APACHEDIR $USERNAME $USERID $GROUPNAME $GROUPID
 	sudo tar zcvf /tmp/chroot-httpd-${VERSION}.tar.gz /$CHROOT
 ;;
 esac

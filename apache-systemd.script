@@ -1,0 +1,18 @@
+[Unit]
+Description=chrooted apache of {Service-Name}
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+RootDirectory={chroot}
+ExecStart=/httpd/bin/httpd
+ExecReload=/bin/kill -HUP $MAINPID
+User={apacheuser}
+Group={apachegroup}
+Envirornment=HTTPD_LANG=${HTTPD_LANG-"C"}
+Envirornment=LANG=$HTTPD_LANG
+LimitNOFILE=8192:8192
+LimitNPROC=65500
+
+[Install]
+WantedBy=multi-user.target

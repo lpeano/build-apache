@@ -17,4 +17,3 @@ To install apache in chroot:
 ```  
 bash Install.bash  make_chroot /HTTPD1/ /tmp/apache/httpd.tar.gz 2.4.46
 ```  
-
