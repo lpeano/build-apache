@@ -7,7 +7,9 @@ download()
 
 packages()
 {
- sudo  dnf -y install apr-util.x86_64 pcre-devel git perl m4 autoconf automake libtool make patch openssl openssl-devel
+
+ sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+ sudo  dnf -y install apr-util.x86_64 pcre-devel lua lua-devel git perl m4 autoconf automake libtool make patch openssl openssl-devel
 }
 
 extract()
