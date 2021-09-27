@@ -23,6 +23,7 @@ chmod -R u=rwx,g=rwx,o=r-x  $CHROOT/$APACHEINSTALL/logs
 cat apache-hardening.httpd.conf > $CHROOT/$APACHEINSTALL/conf/httpd.conf
 mkdir $CHROOT/scripts
 cp apache-systemd.script $CHROOT/scripts/httpd-$apacheservicename.service
+cp apache-systmctl.script $CHROOT/scripts/httpd-systemctl-$apacheservicename.script
 sed -i 's/{Service-Name}/'"$apacheservicename"'/' $CHROOT/scripts/httpd-$apacheservicename.service
 sed -i 's/{chroot}/'"\/$(echo $CHROOT|sed 's/\///g')"'/' $CHROOT/scripts/httpd-$apacheservicename.service
 sed -i 's/{apacheuser}/'"$apacheuser"'/' $CHROOT/scripts/httpd-$apacheservicename.service
