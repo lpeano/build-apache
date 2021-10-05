@@ -31,6 +31,7 @@ then
         rm -rf share
         rm -rf bin
 	cd /$CHROOT
+	cp -pr /usr/local/lib/lua /usr/lib64/
 	tar zxvf $APACHEPPKG
 fi 
 }
