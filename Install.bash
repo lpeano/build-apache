@@ -9,7 +9,7 @@ packages()
 {
 
  sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
- sudo  dnf -y install apr-util.x86_64 pcre-devel lua lua-devel git perl m4 autoconf automake libtool make patch openssl openssl-devel
+ sudo  dnf -y install apr-util.x86_64 pcre-devel lua lua-devel git perl m4 autoconf automake libtool make patch openssl openssl-devel expat expat-devel
 }
 
 extract()
@@ -134,6 +134,7 @@ case "$ARGS" in
 		extract	
 ;;
 "apacheconfig")
+		PREFIX=$1
 		apacheconfig $PREFIX	
 ;;
 "apacheconfig-modcluster")
@@ -173,7 +174,7 @@ case "$ARGS" in
 	download
 	packages
 	extract
-	apacheconfig
+	apacheconfig $PREFIX
 	build
 	install
 	package
