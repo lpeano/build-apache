@@ -104,10 +104,19 @@ build_modules()
 }
 package()
 {
-	cd $InstallDir
-	tar zcvf httpd.tar.gz httpd
-	cd -
-	mkdir build ;cp $InstallDir/httpd.tar.gz build/
+	if [ "X${1}X" == "X/X" ]
+	then
+		cd $InstallDir
+		tar zcvf ../httpd.tar.gz *
+		mv ../httpd.tar.gz .
+		cd -
+		mkdir build ;cp $InstallDir/httpd.tar.gz build/
+	else
+		cd $InstallDir
+		tar zcvf httpd.tar.gz httpd
+		cd -
+		mkdir build ;cp $InstallDir/httpd.tar.gz build/
+	fi
 }
 buildjarPkgs()
 {
@@ -171,13 +180,13 @@ case "$ARGS" in
 	buildjarPkgs
 ;;
 "all")
-	download
-	packages
-	extract
-	apacheconfig $PREFIX
-	build
-	install
-	package
+	#download
+	#packages
+	#extract
+	#apacheconfig $PREFIX
+	#build
+	#install
+	package $PREFIX
 ;;
 "make_chroot")
 	CHROOT=$2
