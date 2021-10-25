@@ -25,6 +25,7 @@ cd ../../
 
 apacheconfig()
 {
+	PREFIX=${1:-/httpd}
 	cd httpd-$APACHEVER
 	./configure  --enable-mpms-shared='worker event' \
              --enable-mods-shared=most \
@@ -36,12 +37,13 @@ apacheconfig()
              --enable-proxy-balancer \
 	     --enable-ssl \
 	     --enable-so \
-	     --enable-mods-shared=all  --with-included-apr --prefix=/httpd
+	     --enable-mods-shared=all  --with-included-apr --prefix=$PREFIX
 	cd -
 }
 
 apacheconfig-modcluster()
 {
+	PREFIX=${1:-/httpd}
 	cd httpd-$APACHEVER
 	./configure  --enable-mpms-shared='worker event' \
              --enable-mods-shared=most \
@@ -53,7 +55,7 @@ apacheconfig-modcluster()
              --disable-proxy-balancer \
 	     --enable-ssl \
 	     --enable-so \
-	     --enable-mods-shared=all  --with-included-apr --prefix=/httpd
+	     --enable-mods-shared=all  --with-included-apr --prefix=$PREFIX
 	cd -
 }
 
@@ -132,10 +134,10 @@ case "$ARGS" in
 		extract	
 ;;
 "apacheconfig")
-		apacheconfig	
+		apacheconfig $PREFIX	
 ;;
 "apacheconfig-modcluster")
-		apacheconfig-modcluster
+		apacheconfig-modcluster $PREFIX
 ;;
 "build")
 		build	
