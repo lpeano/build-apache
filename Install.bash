@@ -180,12 +180,12 @@ case "$ARGS" in
 	buildjarPkgs
 ;;
 "all")
-	#download
-	#packages
-	#extract
-	#apacheconfig $PREFIX
-	#build
-	#install
+	download
+	packages
+	extract
+	apacheconfig $PREFIX
+	build
+	install
 	package $PREFIX
 ;;
 "make_chroot")
